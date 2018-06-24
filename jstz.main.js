@@ -398,8 +398,20 @@ var jstz = (function () {
             };
         };
 
+        /**
+         * Uses the consts.AMBIGUITIES to return the original timezone
+         * @returns String
+         */
+        resolveAmbiguities = function resolveAmbiguities(tz) {
+            for(var key in consts.AMBIGUITIES) {
+                if(key == tz || consts.AMBIGUITIES.indexOf(tz) > 0) return tz;
+            }
+            return null;
+        }
+
     return {
-        determine: determine
+        resolveAmbiguities: resolveAmbiguities,
+	determine: determine
     };
 }());
 
