@@ -396,7 +396,7 @@ var jstz = (function () {
                     return preliminary_tz;
                 }
             };
-        };
+        },
 
         /**
          * Uses the consts.AMBIGUITIES to return the original timezone
@@ -407,7 +407,7 @@ var jstz = (function () {
                 if(key == tz || consts.AMBIGUITIES[key].indexOf(tz) > 0) return tz;
             }
             return null;
-        }
+        };
 
     return {
         resolveAmbiguities: resolveAmbiguities,
