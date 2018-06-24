@@ -109,7 +109,7 @@ var jstz = (function () {
                 return;
             }
             timezone = format.resolvedOptions().timeZone;
-            if (timezone && (timezone.indexOf("/") > -1 || timezone === 'UTC')) {
+            if (timezone && (timezone.indexOf("/") > -1 || timezone === 'UTC') && timezone.indexOf("Etc") != 0) {
                 return timezone;
             }
         },
@@ -398,8 +398,20 @@ var jstz = (function () {
             };
         };
 
+        /**
+         * Uses the consts.AMBIGUITIES to return the original timezone
+         * @returns String
+         */
+        resolveAmbiguities = function resolveAmbiguities(tz) {
+            for(var key in consts.AMBIGUITIES) {
+                if(key == tz || consts.AMBIGUITIES[key].indexOf(tz) > 0) return tz;
+            }
+            return null;
+        }
+
     return {
-        determine: determine
+        resolveAmbiguities: resolveAmbiguities,
+	determine: determine
     };
 }());
 

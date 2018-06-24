@@ -404,7 +404,7 @@ var jstz = (function () {
          */
         resolveAmbiguities = function resolveAmbiguities(tz) {
             for(var key in consts.AMBIGUITIES) {
-                if(key == tz || consts.AMBIGUITIES.indexOf(tz) > 0) return tz;
+                if(key == tz || consts.AMBIGUITIES[key].indexOf(tz) > 0) return tz;
             }
             return null;
         }
